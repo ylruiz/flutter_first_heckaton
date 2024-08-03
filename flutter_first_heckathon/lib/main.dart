@@ -46,7 +46,7 @@ class MyGame extends StatelessWidget {
           final palette = context.watch<Palette>();
 
           return MaterialApp.router(
-            title: 'Endless Runner',
+            title: 'Blast Runner',
             theme: flutterNesTheme().copyWith(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: palette.seed.color,
@@ -55,6 +55,11 @@ class MyGame extends StatelessWidget {
               textTheme: GoogleFonts.pressStart2pTextTheme().apply(
                 bodyColor: palette.text.color,
                 displayColor: palette.text.color,
+              ),
+              textButtonTheme: TextButtonThemeData(
+                style: ButtonStyle(
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
+                ),
               ),
             ),
             routerConfig: router,
