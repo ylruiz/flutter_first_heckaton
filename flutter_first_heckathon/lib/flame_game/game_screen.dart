@@ -10,11 +10,6 @@ import '../player_progress/player_progress.dart';
 import 'endless_runner.dart';
 import 'game_win_dialog.dart';
 
-/// This widget defines the properties of the game screen.
-///
-/// It mostly sets up the overlays (widgets shown on top of the Flame game) and
-/// the gets the [AudioController] from the context and passes it in to the
-/// [EndlessRunner] class so that it can play audio.
 class GameScreen extends StatelessWidget {
   const GameScreen({required this.level, super.key});
 

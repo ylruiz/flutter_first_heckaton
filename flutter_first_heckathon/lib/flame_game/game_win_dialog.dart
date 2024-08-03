@@ -6,11 +6,6 @@ import 'package:provider/provider.dart';
 import '../level_selection/levels.dart';
 import '../style/palette.dart';
 
-/// This dialog is shown when a level is completed.
-///
-/// It shows what time the level was completed in and if there are more levels
-/// it lets the user go to the next level, or otherwise back to the level
-/// selection screen.
 class GameWinDialog extends StatelessWidget {
   const GameWinDialog({
     super.key,

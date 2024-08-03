@@ -25,7 +25,6 @@ List<String> soundTypeToFilename(SfxType type) => switch (type) {
         ]
     };
 
-/// Allows control over loudness of different SFX types.
 double soundTypeToVolume(SfxType type) {
   switch (type) {
     case SfxType.score:
