@@ -2,8 +2,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'player_progress_persistence.dart';
 
-/// An implementation of [PlayerProgressPersistence] that uses
-/// `package:shared_preferences`.
 class LocalStoragePlayerProgressPersistence extends PlayerProgressPersistence {
   final Future<SharedPreferences> instanceFuture =
       SharedPreferences.getInstance();

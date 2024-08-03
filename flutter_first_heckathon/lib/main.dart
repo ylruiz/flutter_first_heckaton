@@ -29,10 +29,8 @@ class MyGame extends StatelessWidget {
           Provider(create: (context) => Palette()),
           ChangeNotifierProvider(create: (context) => PlayerProgress()),
           Provider(create: (context) => SettingsController()),
-          // Set up audio.
           ProxyProvider2<SettingsController, AppLifecycleStateNotifier,
               AudioController>(
-            // Ensures that music starts immediately.
             lazy: false,
             create: (context) => AudioController(),
             update: (context, settings, lifecycleNotifier, audio) {
