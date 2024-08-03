@@ -17,11 +17,13 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
         HasGameReference<EndlessRunner> {
   Player({
     required this.addScore,
+    required this.substractScore,
     required this.resetScore,
     super.position,
   }) : super(size: Vector2.all(150), anchor: Anchor.center, priority: 1);
 
   final void Function({int amount}) addScore;
+  final void Function({int amount}) substractScore;
   final VoidCallback resetScore;
 
   double _gravityVelocity = 0;
@@ -88,7 +90,7 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
     super.onCollisionStart(intersectionPoints, other);
     if (other is Obstacle) {
       game.audioController.playSfx(SfxType.damage);
-      resetScore();
+      substractScore();
       add(HurtEffect());
     } else if (other is Point) {
       game.audioController.playSfx(SfxType.score);

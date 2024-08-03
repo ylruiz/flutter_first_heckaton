@@ -45,8 +45,9 @@ class EndlessRunner extends FlameGame<EndlessWorld> with HasCollisionDetection {
     camera.viewport.add(scoreComponent);
 
     world.scoreNotifier.addListener(() {
-      scoreComponent.text =
-          scoreText.replaceFirst('0', '${world.scoreNotifier.value}');
+      final currentScore = world.scoreNotifier.value;
+
+      scoreComponent.text = scoreText.replaceFirst('0', '$currentScore');
     });
   }
 }

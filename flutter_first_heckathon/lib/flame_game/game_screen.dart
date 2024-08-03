@@ -1,3 +1,4 @@
+import 'package:endless_runner/flame_game/components/game_over_dialog.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,7 @@ class GameScreen extends StatelessWidget {
   final GameLevel level;
 
   static const String winDialogKey = 'win_dialog';
+  static const String gameOverDialogKey = 'game_over';
   static const String backButtonKey = 'back_buttton';
 
   @override
@@ -46,6 +48,9 @@ class GameScreen extends StatelessWidget {
               level: level,
               levelCompletedIn: game.world.levelCompletedIn,
             );
+          },
+          gameOverDialogKey: (BuildContext context, EndlessRunner game) {
+            return GameOverDialog(level: level);
           },
         },
       ),

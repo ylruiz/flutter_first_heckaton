@@ -45,6 +45,7 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
     player = Player(
       position: Vector2(-size.x / 3, groundLevel - 900),
       addScore: addScore,
+      substractScore: substractScore,
       resetScore: resetScore,
     );
     add(player);
@@ -78,6 +79,13 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
     );
 
     scoreNotifier.addListener(() {
+      if (scoreNotifier.value < 0) {
+        game.pauseEngine();
+        game.overlays.add(GameScreen.gameOverDialogKey);
+        resetScore();
+        return;
+      }
+
       if (scoreNotifier.value >= level.winScore) {
         final levelTime = (DateTime.now().millisecondsSinceEpoch -
                 timeStarted.millisecondsSinceEpoch) /
@@ -105,6 +113,10 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
 
   void addScore({int amount = 1}) {
     scoreNotifier.value += amount;
+  }
+
+  void substractScore({int amount = 1}) {
+    scoreNotifier.value -= amount;
   }
 
   void resetScore() {
