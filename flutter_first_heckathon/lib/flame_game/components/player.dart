@@ -17,6 +17,7 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
         CollisionCallbacks,
         HasWorldReference<EndlessWorld>,
         HasGameReference<EndlessRunner> {
+
   Player({
     required this.addScore,
     required this.resetScore,
@@ -25,6 +26,9 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
 
   final void Function({int amount}) addScore;
   final VoidCallback resetScore;
+
+  double _horizontalSpeed = 0;  
+  final double _maxSpeed = 300; 
 
   // The current velocity that the player has that comes from being affected by
   // the gravity. Defined in virtual pixels/s².
@@ -44,6 +48,19 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
   // When the player has velocity pointing downwards it is counted as falling,
   // this is used to set the correct animation for the player.
   bool get isFalling => _lastPosition.y < position.y;
+
+  void moveLeft() {  
+    _horizontalSpeed = -_maxSpeed;  
+  }  
+
+  void moveRight() {  
+    _horizontalSpeed = _maxSpeed;  
+  }  
+
+  void stopMoving() {  
+    _horizontalSpeed = 0;  
+  }  
+
 
   @override
   Future<void> onLoad() async {
@@ -100,6 +117,9 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
     }
 
     _lastPosition.setFrom(position);
+
+     position.x += _horizontalSpeed * dt;  
+
   }
 
   @override
